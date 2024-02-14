@@ -1,15 +1,16 @@
 import 'package:academy/constants.dart';
 import 'package:academy/features/home_screen/product_listing_controller.dart';
-import 'package:academy/theme/theme.dart';
 import 'package:academy/widgets/app_logo.dart';
 import 'package:academy/widgets/error_widget_with_retry.dart';
 import 'package:academy/widgets/network_resource.dart';
+import 'package:academy/widgets/no_item_found.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../profile_screen/profile_screen.dart';
 import 'widgets/pagination_bar.dart';
 import 'widgets/product_list_item.dart';
+import 'widgets/result_count_with_search.dart';
 
 class HomeScreen extends StatelessWidget {
   static const String path = "/home";
@@ -49,29 +50,25 @@ class HomeScreen extends StatelessWidget {
               success: (products) {
                 return Column(
                   children: [
-                    Align(
-                        alignment: Alignment.topLeft,
-                        child: Padding(
-                            padding: const EdgeInsets.all(paddingLarge)
-                                .copyWith(right: 0),
-                            child: Text(
-                              "Showing ${controller.products.length} Courses",
-                              style: context.bodyLarge,
-                            ))),
-                    Expanded(
-                        child: ListView.separated(
-                      padding: const EdgeInsets.all(
-                        paddingLarge,
-                      ).copyWith(top: 0),
-                      itemBuilder: (BuildContext context, int index) {
-                        return ProductListItem(
-                          product: controller.pagedProducts[index],
-                        );
-                      },
-                      separatorBuilder: (BuildContext context, int index) =>
-                          gapLarge,
-                      itemCount: controller.pagedProducts.length,
-                    )),
+                    const ResultCountWithSearch(),
+                    Expanded(child: Builder(builder: (context) {
+                      if (controller.searchResult.isEmpty) {
+                        return const NoItemsFound();
+                      }
+                      return ListView.separated(
+                        padding: const EdgeInsets.all(
+                          paddingLarge,
+                        ).copyWith(top: 0),
+                        itemBuilder: (BuildContext context, int index) {
+                          return ProductListItem(
+                            product: controller.pagedProducts[index],
+                          );
+                        },
+                        separatorBuilder: (BuildContext context, int index) =>
+                            gapLarge,
+                        itemCount: controller.pagedProducts.length,
+                      );
+                    })),
                     const PaginationBar(),
                   ],
                 );

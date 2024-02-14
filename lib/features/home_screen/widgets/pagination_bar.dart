@@ -14,6 +14,7 @@ class PaginationBar extends StatelessWidget {
     return Consumer<ProductListingController>(
       builder: (BuildContext context, ProductListingController value,
           Widget? child) {
+        if (value.totalPages == 0) return const SizedBox();
         return Container(
           padding: const EdgeInsets.only(
             bottom: paddingLarge,

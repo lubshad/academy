@@ -1,17 +1,36 @@
+import 'package:academy/mixins/search_mixin.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/repository.dart';
 import 'models/product_model.dart';
 
-class ProductListingController extends ChangeNotifier {
+class ProductListingController extends ChangeNotifier with SearchMixin {
   ProductListingController() {
     fetchProducts();
+
+    // function is from mixin
+    addSearchListener(() {
+
+      // only searching if lenght greater than 3
+      if (searchController.text.isNotEmpty &&
+          searchController.text.length < 3) {
+        return;
+      }
+      currentPage = 0;
+      notifyListeners();
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    removeSearchListener();
   }
 
   int get totalPages {
-    return products.length % 5 == 0
-        ? products.length ~/ 5
-        : ((products.length ~/ 5) + 1);
+    return searchResult.length % 5 == 0
+        ? searchResult.length ~/ 5
+        : ((searchResult.length ~/ 5) + 1);
   }
 
   int itemPerPage = 5;
@@ -19,6 +38,14 @@ class ProductListingController extends ChangeNotifier {
   Future<List<Product>>? future;
 
   List<Product> products = [];
+
+  List<Product> get searchResult => searchController.text.isEmpty
+      ? products
+      : products
+          .where((element) => (element.title ?? "")
+              .toLowerCase()
+              .contains(searchController.text.toLowerCase()))
+          .toList();
 
   fetchProducts() {
     future = DataRepository.i.fetchProducts().then((value) {
@@ -31,7 +58,10 @@ class ProductListingController extends ChangeNotifier {
   List<Product> get pagedProducts {
     int start = currentPage * itemPerPage;
     int end = start + itemPerPage;
-    return products.sublist(start, end);
+    if (end > searchResult.length) {
+      end = searchResult.length;
+    }
+    return searchResult.sublist(start, end);
   }
 
   int currentPage = 0;
