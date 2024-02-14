@@ -1,3 +1,4 @@
+import 'package:academy/features/home_screen/models/product_model.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:dio/dio.dart';
 import '../features/profile_screen/profile_details_model.dart';
@@ -7,12 +8,7 @@ import 'error_exception_handler.dart';
 import 'interceptors.dart';
 
 bool validateStatus(int? status) {
-  List validStatusCodes = [
-    304,
-    200,
-    201,
-    204
-  ];
+  List validStatusCodes = [304, 200, 201, 204];
   return validStatusCodes.contains(status);
 }
 
@@ -45,6 +41,15 @@ class DataRepository with ErrorExceptionHandler {
     try {
       final response = await _client.get(APIConstants.profileDetails);
       return ProfileDetailsModel.fromMap(response.data);
+    } catch (e) {
+      throw handleError(e);
+    }
+  }
+
+  Future<List<Product>>? fetchProducts() async {
+    try {
+      final response = await _client.get(APIConstants.products);
+      return (response.data as List).map((e) => Product.fromJson(e)).toList();
     } catch (e) {
       throw handleError(e);
     }

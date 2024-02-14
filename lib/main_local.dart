@@ -5,21 +5,19 @@ import 'main.dart';
 
 class AppConfigLocal extends AppConfig {
   @override
-  // TODO: implement domain
-  String get domain => throw UnimplementedError();
+  String get domain => "https://fakestoreapi.com";
 
   @override
-  // TODO: implement slugUrl
-  String get slugUrl => throw UnimplementedError();
-  
+  String get slugUrl => "/";
+
   @override
   // TODO: implement privacyPolicy
   String get privacyPolicy => throw UnimplementedError();
-  
+
   @override
   // TODO: implement refundPolicy
   String get refundPolicy => throw UnimplementedError();
-  
+
   @override
   // TODO: implement termsAndConditions
   String get termsAndConditions => throw UnimplementedError();

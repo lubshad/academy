@@ -1,15 +1,14 @@
 import 'package:academy/features/authentication/social_authentication/google_oauth_mixin.dart';
+import 'package:academy/features/authentication/social_authentication/social_authentication_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 import '../../core/app_config.dart';
-import '../../core/repository.dart';
 import '../../exporter.dart';
 import '../../main.dart';
 import '../../services/shared_preferences_services.dart';
 import '../../widgets/loading_button.dart';
-import '../authentication/phone_auth/phone_auth_screen.dart';
 import '../web_view/web_view_screen.dart';
 import 'profile_details_model.dart';
 
@@ -32,7 +31,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   getData() async {
-    future = DataRepository.i.fetchProfileDetails();
+    // future = DataRepository.i.fetchProfileDetails();
     packageInfo = await PackageInfo.fromPlatform();
     setState(() {});
   }
@@ -53,7 +52,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 onPressed: () => signOut(context)),
             if (packageInfo != null)
               Padding(
-                  padding: const EdgeInsets.only(bottom: paddingXL),
+                  padding: const EdgeInsets.only(
+                    bottom: paddingXL,
+                    top: paddingXL,
+                  ),
                   child: Text("Version : ${packageInfo!.version}"))
           ],
         ),
@@ -94,5 +96,5 @@ void signOut(context) {
   FirebaseAuth.instance.signOut();
   GoogleOauthMixin.signOut();
   Navigator.pushNamedAndRemoveUntil(
-      context, PhoneVerification.path, (route) => false);
+      context, SocialAuthenticationScreen.path, (route) => false);
 }
