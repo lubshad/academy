@@ -5,23 +5,44 @@ import 'package:flutter/services.dart';
 import 'package:get/utils.dart';
 
 ThemeData get themeData => ThemeData(
-    elevatedButtonTheme: ElevatedButtonThemeData(
-      style: ElevatedButton.styleFrom(
-        minimumSize: const Size(200, 54),
-        backgroundColor: buttonColor,
-        foregroundColor: Colors.white,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(padding)),
+      appBarTheme: const AppBarTheme(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
       ),
-    ),
-    scaffoldBackgroundColor: scaffolBackgroundColor,
-    inputDecorationTheme: const InputDecorationTheme(
-      border: InputBorder.none,
-    ),
-    fontFamily: "Roboto",
-    useMaterial3: true,
-    platform: TargetPlatform.iOS,
-    colorScheme: const ColorScheme.light(primary: Colors.black));
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          minimumSize: const Size(200, 54),
+          backgroundColor: primaryColor,
+          foregroundColor: Colors.white,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(padding)),
+        ),
+      ),
+      scaffoldBackgroundColor: scaffolBackgroundColor,
+      inputDecorationTheme: InputDecorationTheme(
+        contentPadding: const EdgeInsets.symmetric(
+          vertical: paddingLarge,
+        ),
+        filled: true,
+        fillColor: scaffolBackgroundColor,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(paddingLarge),
+          borderSide: BorderSide.none,
+        ),
+        prefixIconColor: Colors.grey,
+        suffixIconColor: Colors.grey,
+        hintStyle: const TextStyle(
+          color: Colors.grey,
+          fontSize: 14,
+        ),
+      ),
+      fontFamily: "Roboto",
+      useMaterial3: true,
+      platform: TargetPlatform.iOS,
+      colorScheme: const ColorScheme.light(
+        primary: primaryColor,
+      ),
+    );
 
 extension BuildContextExtension on BuildContext {
   TextStyle get headlineLarge => textTheme.headlineLarge!;

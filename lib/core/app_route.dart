@@ -1,3 +1,4 @@
+import 'package:academy/features/authentication/social_authentication/social_authentication_screen.dart';
 import 'package:animations/animations.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -40,6 +41,9 @@ class AppRoute {
         break;
       case PhoneVerification.path:
         screen = const PhoneVerification();
+        break;
+      case SocialAuthenticationScreen.path:
+        screen = const SocialAuthenticationScreen();
         break;
       default:
         return null;

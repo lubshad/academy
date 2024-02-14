@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import '../../exporter.dart';
+import '../../widgets/app_logo.dart';
 import '../../widgets/error_widget_with_retry.dart';
 import '../../widgets/network_resource.dart';
 import '../home_screen/home_screen.dart';
@@ -35,15 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
             exception: error, retry: fetchRegistrationState),
         success: (data) => const SizedBox(),
         loading: Center(
-            child: Container(
-                    padding: const EdgeInsets.all(paddingLarge),
-                    width: 140,
-                    height: 140,
-                    decoration: const BoxDecoration(
-                      color: Colors.black,
-                      shape: BoxShape.circle,
-                    ),
-                    child: const Placeholder())
+            child: const AppLogo()
                 .animate()
                 .scaleXY(
                   begin: 1.5,
@@ -82,9 +74,9 @@ class _SplashScreenState extends State<SplashScreen> {
           //     context, ProgramSelectionForm.path, (route) => false);
           // break;
           case RegistrationState.completed:
-          Navigator.pushNamedAndRemoveUntil(
-              context, HomeScreen.path, (route) => false);
-          break;
+            Navigator.pushNamedAndRemoveUntil(
+                context, HomeScreen.path, (route) => false);
+            break;
         }
       });
     });

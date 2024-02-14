@@ -22,7 +22,7 @@ const gapTiny = Gap(paddingTiny);
 const Duration animationDuration = Duration(milliseconds: 300);
 const Duration animationDurationLarge = Duration(seconds: 1);
 
-const buttonColor = Color(0xFFec5252);
+const primaryColor = Color(0xFFec5252);
 const scaffolBackgroundColor = Color(0xFFf5f9fa);
 
 const loremIpsum =

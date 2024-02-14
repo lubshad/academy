@@ -1,8 +1,8 @@
-
+import 'package:academy/features/authentication/social_authentication/social_authentication_screen.dart';
+import 'package:academy/widgets/app_logo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../../widgets/loading_button.dart';
-import '../phone_auth/phone_auth_screen.dart';
 import '../../../exporter.dart';
 
 class LandingPage extends StatefulWidget {
@@ -27,21 +27,19 @@ class _LandingPageState extends State<LandingPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Align(
-              alignment: Alignment.centerLeft,
-              child: SizedBox(
-                  width: 100,
-                  child: AspectRatio(aspectRatio: 3, child: Placeholder())),
-            ),
+            // const Align(
+            //   alignment: Alignment.centerLeft,
+            //   child: SizedBox(
+            //       width: 100,
+            //       child: AspectRatio(aspectRatio: 3, child: Placeholder())),
+            // ),
             const Spacer(),
-            const SizedBox(
-                    width: 200,
-                    child: AspectRatio(aspectRatio: 1, child: Placeholder()))
-                .animate()
-                .scaleXY(curve: Curves.fastOutSlowIn, begin: .8, end: 1),
+            const AppLogo(
+              size: 200,
+            ).animate().scaleXY(curve: Curves.fastOutSlowIn, begin: .8, end: 1),
             gapLarge,
             Text(
-              'Your app description',
+              'Learn anywhere,\nanytime with experts',
               style: context.headlineMedium,
               textAlign: TextAlign.center,
             ),
@@ -54,7 +52,8 @@ class _LandingPageState extends State<LandingPage> {
             gapLarge,
             LoadingButton(
               onPressed: () {
-                Navigator.pushNamed(context, PhoneVerification.path);
+                // Navigator.pushNamed(context, PhoneVerification.path);
+                Navigator.pushNamed(context, SocialAuthenticationScreen.path);
               },
               text: ('Get Started'),
               buttonLoading: false,

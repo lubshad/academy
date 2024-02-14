@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:neopop/neopop.dart';
 import '../exporter.dart';
 
 class LoadingButton extends StatelessWidget {
@@ -12,7 +10,7 @@ class LoadingButton extends StatelessWidget {
     this.enabled = true,
     this.expanded = true,
     this.textColor = Colors.white,
-    this.backgroundColor = buttonColor,
+    this.backgroundColor = primaryColor,
     this.padding = const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
   });
 
