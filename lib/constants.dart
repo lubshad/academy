@@ -24,6 +24,7 @@ const Duration animationDurationLarge = Duration(seconds: 1);
 
 const primaryColor = Color(0xFFec5252);
 const scaffolBackgroundColor = Color(0xFFf5f9fa);
+const starColor = Color(0xFFeed257);
 
 const dollar = "\$";
 

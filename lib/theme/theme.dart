@@ -58,6 +58,8 @@ extension BuildContextExtension on BuildContext {
 
   TextStyle get labelLarge => textTheme.labelLarge!;
 
+  TextStyle get bodyMedium => textTheme.bodyMedium!;
+
   TextStyle get bodySmall => textTheme.bodySmall!;
 }
 

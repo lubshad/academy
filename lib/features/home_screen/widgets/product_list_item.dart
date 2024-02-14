@@ -18,6 +18,7 @@ class ProductListItem extends StatelessWidget {
     return AspectRatio(
       aspectRatio: 3,
       child: Container(
+        padding: const EdgeInsets.all(padding),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(
@@ -28,39 +29,64 @@ class ProductListItem extends StatelessWidget {
           children: [
             AspectRatio(
               aspectRatio: 1,
-              child: CachedNetworkImage(
-                imageUrl: product.image ?? "",
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(
+                  paddingLarge,
+                ),
+                child: CachedNetworkImage(
+                  imageUrl: product.image ?? "",
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
+            gapLarge,
             Expanded(
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     product.title ?? "",
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  Text(product.category ?? ""),
+                  const Spacer(),
+                  Text(
+                    product.category ?? "",
+                    style: context.bodyMedium.copyWith(
+                      color: Colors.grey,
+                    ),
+                  ),
+                  gap,
                   Row(
                     children: [
-                      RatingBar.builder(
-                        initialRating: 3,
-                        minRating: 1,
+                      RatingBar(
+                        initialRating: 1,
                         direction: Axis.horizontal,
                         allowHalfRating: true,
                         itemCount: 5,
-                        itemPadding:
-                            const EdgeInsets.symmetric(horizontal: 4.0),
-                        itemBuilder: (context, _) => const Icon(
-                          Icons.star,
-                          color: Colors.amber,
+                        itemSize: paddingLarge,
+                        ratingWidget: RatingWidget(
+                          full: const Icon(Icons.star, color: starColor),
+                          half: const Icon(
+                            Icons.star_half,
+                            color: starColor,
+                          ),
+                          empty: const Icon(
+                            Icons.star_border,
+                            color: starColor,
+                          ),
                         ),
                         onRatingUpdate: (rating) {
                           print(rating);
                         },
                       ),
                       Text(
-                          "(${product.rating?.rate ?? 0}) (${product.rating?.count ?? 0})"),
+                        "(${product.rating?.rate ?? 0}) (${product.rating?.count ?? 0})",
+                        style: context.bodySmall.copyWith(
+                          color: Colors.grey,
+                        ),
+                      ),
+                      const Spacer(),
                       Text("$dollar${product.price}"),
                     ],
                   )

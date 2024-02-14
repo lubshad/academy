@@ -46,7 +46,7 @@ class DataRepository with ErrorExceptionHandler {
     }
   }
 
-  Future<List<Product>>? fetchProducts() async {
+  Future<List<Product>> fetchProducts() async {
     try {
       final response = await _client.get(APIConstants.products);
       return (response.data as List).map((e) => Product.fromJson(e)).toList();

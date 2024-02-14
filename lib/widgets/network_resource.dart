@@ -39,3 +39,30 @@ class NetworkResource<Type> extends StatelessWidget {
     );
   }
 }
+
+class NetworkResourceV2<Type> extends StatelessWidget {
+  const NetworkResourceV2(
+      {super.key,
+      this.loading = const LoadingWidget(),
+      this.isLoading = true,
+      required this.errorWidget,
+      this.error,
+      required this.success});
+  final Widget loading;
+  final Widget Function(dynamic) errorWidget;
+  final Widget success;
+  final bool isLoading;
+  final dynamic error;
+
+  @override
+  Widget build(BuildContext context) {
+    if (isLoading) return loading;
+    Widget widget = Container();
+    if (error) {
+      widget = errorWidget(error);
+    } else {
+      widget = success;
+    }
+    return widget;
+  }
+}
