@@ -1,3 +1,4 @@
+import 'package:academy/features/authentication/social_authentication/google_oauth_mixin.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -91,6 +92,7 @@ void showPrivacyPolicy() {
 void signOut(context) {
   SharedPreferencesService.i.setValue(value: "");
   FirebaseAuth.instance.signOut();
+  GoogleOauthMixin.signOut();
   Navigator.pushNamedAndRemoveUntil(
       context, PhoneVerification.path, (route) => false);
 }

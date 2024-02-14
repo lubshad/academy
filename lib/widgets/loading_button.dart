@@ -3,6 +3,7 @@ import '../exporter.dart';
 
 class LoadingButton extends StatelessWidget {
   const LoadingButton({
+    this.icon,
     super.key,
     required this.buttonLoading,
     required this.text,
@@ -22,12 +23,26 @@ class LoadingButton extends StatelessWidget {
   final bool enabled;
   final Color backgroundColor;
   final bool expanded;
+  final Widget? icon;
 
   @override
   Widget build(BuildContext context) {
     Widget button = ElevatedButton(
-      onPressed: onPressed,
-      child: Text(text),
+      style: ElevatedButton.styleFrom(
+        backgroundColor: backgroundColor,
+      ),
+      onPressed: buttonLoading ? null : onPressed,
+      child: Builder(builder: (context) {
+        if (buttonLoading) return const CircularProgressIndicator();
+        final textWidget = Text(text);
+        if (icon != null) {
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [icon!, gap, textWidget],
+          );
+        }
+        return textWidget;
+      }),
     );
     if (expanded) {
       return Row(

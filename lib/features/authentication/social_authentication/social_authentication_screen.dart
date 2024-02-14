@@ -1,4 +1,5 @@
 import 'package:academy/exporter.dart';
+import 'package:academy/features/authentication/social_authentication/google_oauth_mixin.dart';
 import 'package:academy/widgets/loading_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -15,22 +16,22 @@ class SocialAuthenticationScreen extends StatefulWidget {
       _SocialAuthenticationScreenState();
 }
 
-class _SocialAuthenticationScreenState
-    extends State<SocialAuthenticationScreen> {
+class _SocialAuthenticationScreenState extends State<SocialAuthenticationScreen>
+    with GoogleOauthMixin {
   bool passwordVisible = false;
 
-  bool buttonLoading = false;
-  makeButtonLoading() {
-    buttonLoading = true;
+  bool loginButtonLoading = false;
+  makeLoginButtonLoading() {
+    loginButtonLoading = true;
     setState(() {});
   }
 
-  makeButtonNotLoading() {
-    buttonLoading = false;
+  makeLoginButtonNotLoading() {
+    loginButtonLoading = false;
     setState(() {});
   }
 
-  IconData? get visibilityIcon => passwordVisible
+  IconData? get visibilityIcon => !passwordVisible
       ? Icons.visibility_off_outlined
       : Icons.visibility_outlined;
 
@@ -101,9 +102,21 @@ class _SocialAuthenticationScreenState
                     ),
                     gapLarge,
                     LoadingButton(
-                        buttonLoading: buttonLoading,
+                        buttonLoading: loginButtonLoading,
                         text: "Log In",
-                        onPressed: handleLoginClick)
+                        onPressed: handleLoginClick),
+                    gap,
+                    const Text("OR"),
+                    gap,
+                    LoadingButton(
+                        icon: SvgPicture.asset(
+                          Assets.svgs.icons8Google,
+                          height: paddingXL,
+                        ),
+                        backgroundColor: Colors.black,
+                        buttonLoading: buttonLoading,
+                        text: "Sign In With Google",
+                        onPressed: signInWithGoogle),
                   ],
                 )),
             Row(
