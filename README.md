@@ -1,16 +1,24 @@
-# academy
+# README
 
-A new Flutter project.
+## Introduction
+Welcome to Academy! 
 
-## Getting Started
+## Features
+- **Pagination**: Due to limitations in the API, pagination is implemented in the frontend only. Each page displays 5 items, with a total of 20 products listed.
+- **Authentication**:
+  - **Google Sign-In**: Users can log in using their Google accounts for seamless access.
+  - **Email and Password Sign-In**: Firebase Auth is utilized for email and password-based authentication.
+- **State Management**: Provider package is employed for efficient state management across the application.
+- **Mixins**: In certain cases, mixins are utilized to enhance code reusability and maintainability.
 
-This project is a starting point for a Flutter application.
+## Installation
+1. Clone the repository.
+2. Navigate to the project directory.
+3. Run `flutter pub get` to install dependencies.
+4. Connect your device or emulator.
+5. Run `flutter run` to launch the application.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Usage
+- After installation, launch the app on your device or emulator.
+- Sign in using either Google account or email and password.
+- Explore the app's functionalities, including pagination, product listing, and more.
