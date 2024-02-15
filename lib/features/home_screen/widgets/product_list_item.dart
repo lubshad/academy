@@ -77,7 +77,7 @@ class ProductListItem extends StatelessWidget {
                           ),
                         ),
                         onRatingUpdate: (rating) {
-                          print(rating);
+                          logInfo(rating);
                         },
                       ),
                       Text(

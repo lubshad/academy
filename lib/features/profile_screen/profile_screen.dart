@@ -2,7 +2,6 @@ import 'package:academy/features/authentication/social_authentication/google_oau
 import 'package:academy/features/authentication/social_authentication/social_authentication_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 

@@ -1,3 +1,4 @@
+import 'package:academy/core/logger.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/utils.dart';
@@ -68,7 +69,7 @@ mixin EmailPasswordMixin<T extends StatefulWidget> on State<T> {
       );
       makeLoginButtonNotLoading();
       // Successfully signed in
-      print('Signed in: ${userCredential.user!.uid}');
+      logInfo('Signed in: ${userCredential.user!.uid}');
       handleSignIn();
     } on FirebaseAuthException catch (e) {
       makeLoginButtonNotLoading();
@@ -87,13 +88,13 @@ mixin EmailPasswordMixin<T extends StatefulWidget> on State<T> {
       );
       makeLoginButtonNotLoading();
       // Successfully signed up
-      print('Signed up: ${userCredential.user!.uid}');
+      logInfo('Signed up: ${userCredential.user!.uid}');
       handleSignIn();
     } on FirebaseAuthException catch (e) {
       makeLoginButtonNotLoading();
-      print(e.code);
+      logInfo(e.code);
       // Handle sign-up errors
-      print('Failed to sign up: $e');
+      logInfo('Failed to sign up: $e');
     }
   }
 
