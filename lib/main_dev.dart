@@ -5,12 +5,10 @@ import 'main.dart';
 
 class AppConfigDev extends AppConfig {
   @override
-  // TODO: implement domain
-  String get domain => throw UnimplementedError();
+  String get domain => "https://fakestoreapi.com";
 
   @override
-  // TODO: implement slugUrl
-  String get slugUrl => throw UnimplementedError();
+  String get slugUrl => "/";
   
   @override
   // TODO: implement privacyPolicy
