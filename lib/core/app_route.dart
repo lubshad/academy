@@ -38,7 +38,7 @@ class AppRoute {
         break;
       case HomeScreen.path:
         screen = const HomeScreen();
-        break;
+        return fadeScale(settings, screen);
       case PhoneVerification.path:
         screen = const PhoneVerification();
         break;

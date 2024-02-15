@@ -79,12 +79,10 @@ class PaginationBarItem extends StatelessWidget {
               border: !selected ? Border.all() : null,
             ),
             alignment: Alignment.center,
-            child: Expanded(
-              child: Text(
-                pageNumber.toString(),
-                style: context.bodySmall.copyWith(
-                  color: selected ? Colors.white : Colors.black,
-                ),
+            child: Text(
+              pageNumber.toString(),
+              style: context.bodySmall.copyWith(
+                color: selected ? Colors.white : Colors.black,
               ),
             ),
           ),

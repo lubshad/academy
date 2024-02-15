@@ -30,7 +30,7 @@ mixin GoogleOauthMixin<T extends StatefulWidget> on State<T> {
 
   Future signInWithGoogle() async {
     if (buttonLoading) return;
-    makeButtonNotLoading();
+    makeButtonLoading();
     try {
       final GoogleSignInAccount? googleSignInAccount =
           await _googleSignIn.signIn();

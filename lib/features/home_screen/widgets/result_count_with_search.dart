@@ -25,52 +25,50 @@ class _ResultCountWithSearchState extends State<ResultCountWithSearch> {
             padding: const EdgeInsets.all(paddingLarge),
             child: Builder(builder: (context) {
               if (searchVisible) {
-                return Expanded(
-                  child: Builder(builder: (context) {
-                    return TextFormField(
-                      controller: value.searchController,
-                      autofocus: true,
-                      decoration: InputDecoration(
-                        suffixIcon: IconButton(
-                          onPressed: () {
-                            value.searchController.clear();
-                            tougleSearchView();
-                          },
-                          icon: const Icon(
-                            Icons.close,
-                          ),
-                        ),
-                        hintText: "Search by name",
-                      ),
-                    ).animate().fade(
-                          curve: Curves.fastOutSlowIn,
-                          begin: 0,
-                          end: 1,
-                        );
-                  }),
-                );
-              } else {
-                return Expanded(
-                  child: Row(
-                    children: [
-                      Text(
-                        "Showing ${value.products.length} Courses",
-                        style: context.bodyLarge,
-                      ),
-                      const Spacer(),
-                      IconButton(
-                        onPressed: tougleSearchView,
+                return Builder(builder: (context) {
+                  return TextFormField(
+                    controller: value.searchController,
+                    autofocus: true,
+                    decoration: InputDecoration(
+                      suffixIcon: IconButton(
+                        onPressed: () {
+                          value.searchController.clear();
+                          tougleSearchView();
+                        },
                         icon: const Icon(
-                          Icons.search,
+                          Icons.close,
                         ),
-                      )
-                    ],
-                  ).animate().fade(
+                      ),
+                      hintText: "Search by name",
+                    ),
+                  )
+                  .animate().fade(
                         curve: Curves.fastOutSlowIn,
                         begin: 0,
                         end: 1,
+                      );
+                });
+              } else {
+                return Row(
+                  children: [
+                    Text(
+                      "Showing ${value.searchResult.length} Courses",
+                      style: context.bodyLarge,
+                    ),
+                    const Spacer(),
+                    IconButton(
+                      onPressed: tougleSearchView,
+                      icon: const Icon(
+                        Icons.search,
                       ),
-                );
+                    )
+                  ],
+                )
+                .animate().fade(
+                      curve: Curves.fastOutSlowIn,
+                      begin: 0,
+                      end: 1,
+                    );
               }
             }));
       },
